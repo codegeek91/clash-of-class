@@ -10,8 +10,7 @@ int main()
     // initialize window
     InitWindow(windowWidth, windowHeight, "Clash of Class");
 
-    Character knight;
-    knight.setScreenPos(windowWidth, windowHeight);
+    Character knight{windowWidth, windowHeight};
 
     // load textures
     Texture2D map = LoadTexture("nature_tileset/OpenWorldMap24x24.png");
