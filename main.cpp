@@ -2,6 +2,7 @@
 #include "raymath.h"
 #include "Character.h"
 #include "Prop.h"
+#include "Enemy.h"
 
 int main()
 {
@@ -12,6 +13,12 @@ int main()
     InitWindow(windowWidth, windowHeight, "Clash of Class");
 
     Character knight{windowWidth, windowHeight};
+
+    Enemy goblin{
+        Vector2{0.f, 0.f},
+        LoadTexture("characters/goblin_idle_spritesheet.png"),
+        LoadTexture("characters/goblin_run_spritesheet.png")
+    };
 
     Prop props[2]{
         Prop{Vector2{600.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
@@ -59,6 +66,8 @@ int main()
                 knight.undoMovement();
             }
         }
+
+        goblin.tick(GetFrameTime());
 
         EndDrawing();
     }
