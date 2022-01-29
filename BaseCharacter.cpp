@@ -1,4 +1,5 @@
 #include "BaseCharacter.h"
+#include "raymath.h"
 
 BaseCharacter::BaseCharacter()
 {
@@ -17,6 +18,19 @@ void BaseCharacter::tick(float deltaTime)
         runningTime = 0.f;
         if (frame > maxFrames) frame = 0;
     }
+
+    if(Vector2Length(velocity) != 0.0)
+    {
+        // set worldPos = worldPos + direction
+        worldPos = Vector2Add(worldPos, Vector2Scale(Vector2Normalize(velocity), speed));
+        velocity.x < 0.f ? rightLeft = -1.f : rightLeft = 1.f;
+        texture = run;
+    }
+    else
+    {
+        texture = idle;
+    }
+    velocity = {};
 
     // draw character
     Rectangle source{width * frame, 0.f, rightLeft * width, height};
