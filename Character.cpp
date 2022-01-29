@@ -1,13 +1,19 @@
 #include "Character.h"
 #include "raymath.h"
 
-Character::Character(int windowWidth, int windowHeight)
+Character::Character(int windowWidth, int windowHeight) :
+    windowWidth(windowWidth),
+    windowHeight(windowHeight)
 {
     width = texture.width / maxFrames;
     height = texture.height;
-    screenPos = {
+}
+
+Vector2 Character::getScreenPos()
+{
+    return Vector2{
         static_cast<float>(windowWidth)/2.0f - scale * (0.5f * width),
-         static_cast<float>(windowHeight)/2.0f - scale * (0.5f * height)
+        static_cast<float>(windowHeight)/2.0f - scale * (0.5f * height)
     };
 }
 
